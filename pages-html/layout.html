@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<title>
+			{{ app_config.app_title.content }}
+			{# APIVIZ #}
+		</title>
+		
+		{# CUSTOM APP META DATA #}
+		<meta name="keywords" 		content="{{ app_config.app_keywords.content }}">
+		<meta name="description" 	content="{{ app_config.app_description.content }}">
+
+		<meta name="author"				content="{{ app_metas.authors }}">
+		
+		<meta name="config_name" 	content="{{ config_name }}">
+
+		<meta name="user_token" 	content="test_token">
+		
+		{# BULMA EXTENSIONS NEEDING JS #}
+		{# <script type="text/javascript" src="/node_modules/bulma-extensions/bulma-carousel/dist/bulma-carousel.min.js"></script> #}
+
+		{# GOOGLE INDEXING / cf : https://support.google.com/webmasters/answer/6259634?hl=en #}
+		{# <meta name="google-site-verification" content="vSnFdoQsEBUIOqbQWr3h1SRXb1mu0ttVN0fo4H25XNk" /> #}
+
+		{# MIX PANEL - METRICS --- only in production mode #}
+		{% if config_name == "production" %}
+			{# <script>
+			</script> #}
+		{% endif %}
+
+		{# <link rel="stylesheet" href="{{ url_for('static', filename='build/bundle.css') }}"> #}
+		<link rel="stylesheet" href="/static/build/bundle.css?400">
+
+		<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+	</head>
+
+
+	{# MAIN CONTENTS #}
+	<body>
+		<nav 	class="navbar is-white is-fixed-top" 
+				id="navbar-top" 
+				role="navigation" 
+				aria-label="main navigation">
+			
+			{% if language == "en" %}
+				{# {% include "navbars/navbar-main-english.html" %} #}
+				{% include "navbars/navbar-main.html" %}
+			{% else %}
+				{% include "navbars/navbar-main.html" %}
+			{% endif %}
+
+		</nav>
+
+		{% block content %}
+		{% endblock %}
+
+		{% include "footer.html" %}
+
+        <!-- ANALYTICS  -->
+        {% if config_name == "production" %}
+
+        <script>
+            {# // https://blog.toky.co/mixpanels-basic-tutorial-guide-to-start-custom-event-tracking-on-your-website/
+            console.log("sending data to Mix Panel")
+            mixpanel.track("page_view"); #}
+        </script> 
+
+        {# <script src="{{ url_for('static', filename='js/cis-mixpanel-metrics.js') }}"></script> #}
+        
+        {% endif %}
+
+	</body>
+</html>
