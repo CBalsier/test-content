@@ -4,4 +4,12 @@ const projectCountP = fetch('https://solidata-api.co-demos.com/api/dsi/infos/get
   .then(r => r.json())
   .then(r => r.data.data_raw.f_data_count)
 
-console.log(projectCountP)
+document.addEventListener('DOMContentLoaded', e => {
+  const counter = document.querySelector('.counter')
+  projectCountP.then(projectCount => {
+    //const start = performance.now();
+    console.log(projectCount)
+  })
+
+})
+console.log("the end")
