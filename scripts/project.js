@@ -1,0 +1,25 @@
+function loadScript(url, callback){
+    console.log("try to load script");
+    var script = document.createElement('script');
+    script.type = "text/javascript";
+    script.src = url;
+
+    script.onreadystatechange = callback;
+    script.onload = callback;
+
+    document.head.appendChild(script);
+}
+
+var activateCarousel = function(){
+    //console.log("callback?");
+    var carousels=bulmaCarousel.attach('.carousel', {
+        slidesToShow: 2,
+        infinite: true,
+        pagination: false
+    });
+};
+
+loadScript("https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js", activateCarousel);
+
+//console.log("loaded!");
+
