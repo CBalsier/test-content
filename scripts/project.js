@@ -17,6 +17,10 @@ var activateCarousel = function(){
         infinite: true,
         pagination: false
     });
+    
+    // "hacky" way to get custom icons
+    document.getElementsByClassName("slider-navigation-previous")[0].childNodes[0].remove();
+    document.getElementsByClassName("slider-navigation-next")[0].childNodes[0].remove();
 };
 
 loadScript("https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js", activateCarousel);
